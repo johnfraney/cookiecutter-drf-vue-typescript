@@ -1,6 +1,6 @@
 {
-  "name": "banana",
-  "short_name": "banana",
+  "name": "cookiecutter-drf-vue-typescript",
+  "short_name": "cookiecutter-drf-vue-typescript",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",

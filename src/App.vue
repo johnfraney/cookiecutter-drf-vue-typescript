@@ -2,11 +2,25 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/login">Login</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component
+export default class App extends Vue {
+  async created() {
+    // Add unauthenticated Core API schema to localStorage
+    await this.$coreapi.fetchSchema()
+  }
+}
+</script>
+
 
 <style>
 #app {

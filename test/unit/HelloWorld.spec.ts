@@ -1,3 +1,4 @@
+import { t } from 'jest-t-assert'
 import { shallow } from '@vue/test-utils'
 import HelloWorld from '@/components/HelloWorld.vue'
 
@@ -7,6 +8,6 @@ describe('HelloWorld.vue', () => {
     const wrapper = shallow(HelloWorld, {
       propsData: { msg }
     })
-    expect(wrapper.text()).toMatch(msg)
+    t.true(wrapper.text().indexOf(msg) > -1)
   })
 })

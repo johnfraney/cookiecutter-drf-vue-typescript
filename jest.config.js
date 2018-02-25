@@ -17,5 +17,9 @@ module.exports = {
   snapshotSerializers: [
     'jest-serializer-vue'
   ],
-  mapCoverage: true
+  collectCoverageFrom: [
+    'src/**/*.{ts,vue}',
+    '!src/shims.d.ts'
+  ],
+  coverageDirectory: '.coverage'
 }

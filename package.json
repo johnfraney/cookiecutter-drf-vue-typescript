@@ -1,5 +1,5 @@
 {
-  "name": "banana",
+  "name": "cookiecutter-drf-vue-typescript",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "e2e:open": "vue-cli-service e2e:open"
   },
   "dependencies": {
+    "coreapi": "^0.1.1",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.13",
     "vue-class-component": "^6.0.0",
@@ -28,6 +29,7 @@
     "@vue/cli-service": "^3.0.0-beta.1",
     "@vue/eslint-config-typescript": "^3.0.0-beta.1",
     "@vue/test-utils": "^1.0.0-beta.10",
+    "jest-t-assert": "^0.2.0",
     "lint-staged": "^6.0.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
