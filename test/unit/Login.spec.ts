@@ -1,5 +1,5 @@
 import {t} from 'jest-t-assert'
-import {createLocalVue, shallow} from '@vue/test-utils'
+import {Wrapper, createLocalVue, shallow} from '@vue/test-utils'
 import {VueCoreAPI} from '@/plugins/VueCoreAPI'
 import Login from '@/views/Login.vue'
 
@@ -9,20 +9,20 @@ localVue.use(VueCoreAPI, {
   schemaUrl: 'http://localhost:8000/api/schema/'
 })
 
-describe('HelloWorld.vue', () => {
-  let wrapper
+describe('Login.vue', () => {
+  let wrapper: Wrapper<Login>
 
   beforeEach(() => {
     wrapper = shallow(Login, {
       localVue,
       mocks: {
-        localStorage: (value) => value
+        localStorage: (value: any) => value
       }
     })
   })
 
   it('is a Vue component', () => {
-    t.true(wrapper.isVueComponent)
+    t.true(wrapper.isVueInstance())
   })
 
   it('fetches the Core API schema when created', () => {

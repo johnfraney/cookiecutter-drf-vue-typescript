@@ -1,13 +1,17 @@
 import coreapi from 'coreapi'
 
+interface VueCoreAPIOptions {
+  [key: string]: any
+}
+
 export const VueCoreAPI = {
-  install: function (Vue, options) {
+  install: function (Vue: any, options: VueCoreAPIOptions) {
     const codec = new coreapi.codecs.CoreJSONCodec()
-    const baseUrl = options.baseUrl
-    const schemaUrl = options.schemaUrl
+    const baseUrl: string = options.baseUrl
+    const schemaUrl: string = options.schemaUrl
 
     Vue.prototype.$coreapi = {
-      action (action, params = {}) {
+      action (action: string[], params = {}) {
         const client = this._getClient()
         const schema = this._getSchema()
         return client.action(schema, action, params)
@@ -17,10 +21,12 @@ export const VueCoreAPI = {
        * Returns a form object given a Core API action
        * @param {string|string[]} action
        */
-      buildFormObjectFromAction(action) {
-        const form = {}
+      buildFormObjectFromAction(action: string | string[]) {
+        const form: {[key: string]: any} = {}
+        const savedSchema = localStorage.getItem('schema')
+        if (savedSchema === null) { return form }
+        const schema: any = JSON.parse(savedSchema)
         let fields
-        const schema = JSON.parse(localStorage.getItem('schema'))
         if (action instanceof Array) {
           let node = schema
           for (const actionPart of action) {
@@ -28,7 +34,7 @@ export const VueCoreAPI = {
           }
           fields = node.fields
         }
-        else if (action instanceof String) {
+        else if (typeof action === 'string') {
           fields = schema[action].fields
         }
         for (const field of fields) {
@@ -38,7 +44,7 @@ export const VueCoreAPI = {
         return form
       },
 
-      get (url) {
+      get (url: string) {
         const client = this._getClient()
         return client.get(url)
       },

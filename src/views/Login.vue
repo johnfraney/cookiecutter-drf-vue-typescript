@@ -40,8 +40,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Login extends Vue {
-  errors: object[] = []
-  form: object = {}
+  errors: string[] = []
+  form: {[key: string]: any} = {}
   users: object[] = []
 
   async created() {

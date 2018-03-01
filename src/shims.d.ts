@@ -1,10 +1,12 @@
+import Vue from 'vue'
+
 declare module '*.vue' {
-  import Vue from 'vue';
-  export default Vue;
+  export default Vue
 }
 
-declare module 'jest-t-assert' {
-  export class t {
-    public true(expression: boolean): () => void
+// VueCoreAPI
+declare module 'vue/types/vue' {
+  interface Vue {
+    $coreapi: any
   }
 }
