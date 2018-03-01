@@ -19,7 +19,7 @@ module.exports = {
   ],
   collectCoverageFrom: [
     'src/**/*.{ts,vue}',
-    '!src/shims.d.ts'
+    '!**/*.d.ts'
   ],
   coverageDirectory: '.coverage'
 }
