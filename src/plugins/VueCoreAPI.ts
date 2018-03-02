@@ -5,13 +5,13 @@ interface VueCoreAPIOptions {
 }
 
 export const VueCoreAPI = {
-  install: function (Vue: any, options: VueCoreAPIOptions) {
+  install(Vue: any, options: VueCoreAPIOptions) {
     const codec = new coreapi.codecs.CoreJSONCodec()
     const baseUrl: string = options.baseUrl
     const schemaUrl: string = options.schemaUrl
 
     Vue.prototype.$coreapi = {
-      action (action: string[], params = {}) {
+      action(action: string[], params = {}) {
         const client = this._getClient()
         const schema = this._getSchema()
         return client.action(schema, action, params)
@@ -44,44 +44,44 @@ export const VueCoreAPI = {
         return form
       },
 
-      get (url: string) {
+      get(url: string) {
         const client = this._getClient()
         return client.get(url)
       },
 
-      fetchSchema () {
+      fetchSchema() {
         let headers = {}
         const token = this._getToken()
-        if (token) headers = new Headers({'Authorization': `Token ${token}`})
+        if (token) { headers = new Headers({Authorization: `Token ${token}`}) }
         return fetch(schemaUrl, {headers})
-          .then(response => response.json())
-          .then(schema => {
+          .then((response) => response.json())
+          .then((schema) => {
             localStorage.setItem('schema', JSON.stringify(schema))
           })
       },
 
-      _getClient () {
+      _getClient() {
         let auth = null
         const token = this._getToken()
         if (token) {
           auth = new coreapi.auth.TokenAuthentication({
             token,
-            scheme: 'Token'
+            scheme: 'Token',
           })
         }
         return new coreapi.Client({auth})
       },
 
-      _getSchema () {
+      _getSchema() {
         let schema = null
         const schemaString = localStorage.getItem('schema')
-        if (schemaString) schema = codec.decode(schemaString, {url: baseUrl})
+        if (schemaString) { schema = codec.decode(schemaString, {url: baseUrl}) }
         return schema
       },
 
-      _getToken () {
+      _getToken() {
         return localStorage.getItem('token')
-      }
+      },
     }
-  }
+  },
 }

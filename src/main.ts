@@ -8,11 +8,11 @@ import './registerServiceWorker'
 Vue.config.productionTip = false
 Vue.use(VueCoreAPI, {
   baseUrl: 'http://localhost:8000/api/',
-  schemaUrl: 'http://localhost:8000/api/schema/'
+  schemaUrl: 'http://localhost:8000/api/schema/',
 })
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app')
